@@ -1,5 +1,16 @@
 import express from 'express';
 
+import { ExampleRouter } from './routes/example.route';
+import { config } from './config/default';
+
 const app = express();
 
-app.listen(8080, ()=>console.log("Serve is running.."));
+app.use(express.json());
+
+const router = express.Router();
+
+router.use(ExampleRouter);
+
+app.use(router);
+
+app.listen(config.app.port, ()=>console.log("Serve is running.."));
